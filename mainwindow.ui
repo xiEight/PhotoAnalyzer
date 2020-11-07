@@ -93,7 +93,7 @@
      <item>
       <widget class="QLabel" name="statusLabel">
        <property name="text">
-        <string>Status:</string>
+        <string>Status: disconnected</string>
        </property>
       </widget>
      </item>
@@ -105,7 +105,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="sendBtn">
        <property name="text">
         <string>Send to analyze</string>
        </property>

@@ -79,10 +79,9 @@ void gost::crypt()
         write(chank);
 
         if(buffQueue->empty() && complete)
-            return;
+            break;
     }
     output.close();
-
 }
 
 void gost::reading()
@@ -201,6 +200,7 @@ std::pair<std::uint32_t, std::uint32_t> gost::oneStepCrypto(std::pair<std::uint3
     return (round++ < 31? (std::make_pair(lower, buf.first)) : (std::make_pair(buf.first, lower)));
 }
 
+
 gost::~gost()
 {
     if (output.is_open())
@@ -210,3 +210,4 @@ gost::~gost()
         delete buffQueue;
 
 }
+

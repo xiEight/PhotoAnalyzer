@@ -7,7 +7,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QProgressBar>
-#include <gost.h>
+#include "gost.h"
+#include "client.h"
+#include <fstream>
 
 namespace Ui {
 class MainWindow;
@@ -26,12 +28,22 @@ private slots:
 
     void on_chooseImageButton_clicked();
 
+    void on_connectButton_clicked();
+
+    void on_sendBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QScrollArea *area;
     QImage image;
     QByteArray buffer;
-    gost crypter;
+    gost *crypter = nullptr;
+    Client *clientSocket = nullptr;
+    QString fileName;
+    std::mutex fileEncryptingLock;
+    std::condition_variable cv;
+    bool fileOpComplete = false;
+    void showError(QString const &errName, QString const &windowTitle);
 };
 
 #endif // MAINWINDOW_H
